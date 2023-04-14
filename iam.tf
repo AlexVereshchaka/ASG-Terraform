@@ -90,7 +90,7 @@ resource "aws_lambda_permission" "permission" {
 resource "aws_lambda_permission" "allow_s3_access" {
   statement_id  = "AllowExecutionFromS3"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.my_lambda_function.arn
+  function_name = aws_lambda_function.redirect_traffic.arn
 
   principal  = "s3.amazonaws.com"
   source_arn = aws_s3_bucket.lambda_bucket.arn

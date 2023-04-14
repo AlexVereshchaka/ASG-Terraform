@@ -3,11 +3,11 @@ resource "aws_instance" "server" {
   ami           = "ami-0c55b159cbfafe1f0"
   instance_type = "t2.micro"
   key_name      = "my-key"
-  security_group_ids = ["aws_security_group.instance.id"]
+  vpc_security_group_ids = [aws_security_group.instance.id]
 }
 
 
-# Создание CloudWatch Alarm
+# Создание CloudWatch Alarm... Нужно заменить ресурс другим!!!!!! (Не поддерживается новыми версиями)
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   alarm_name          = "cpu-utilization-alarm"
   comparison_operator = "GreaterThanThreshold"

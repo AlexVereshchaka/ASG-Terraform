@@ -12,7 +12,7 @@ data "archive_file" "lambda_archive" {
   type = "zip"
 
   source_file      = "lambda.py"
-  output_file_path = "/tmp/lambda_function.zip"
+  output_file_path = "./lambda_function.zip"
 }
 
 # Загружаем zip-архив в S3 бакет

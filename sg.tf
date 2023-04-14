@@ -1,5 +1,9 @@
 # Создание Security Group для EC2 Instance
+
+
+/// Поправить
 resource "aws_security_group" "instance" {
+  vpc_id = aws_vpc.vpc
   name_prefix = "instance"
   ingress {
     from_port = 22

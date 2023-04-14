@@ -8,7 +8,7 @@ resource "aws_lambda_function" "redirect_traffic" {
 }
 
 resource "aws_lambda_function_environment" "my_lambda_function_env" {
-  function_name = aws_lambda_function.my_lambda_function.id
+  function_name = aws_lambda_function.redirect_traffic.id
 
   variables = {
     target_group_arn = aws_lb_target_group.my_target_group.arn
