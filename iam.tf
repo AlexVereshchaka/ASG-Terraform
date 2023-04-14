@@ -63,7 +63,7 @@ resource "aws_iam_role_policy_attachment" "nlb_policy_attachment" {
   role = aws_iam_role.lambda.name
 }
 
-resource "aws_cloudwatch_alarm" "alarm_to_lambda" {
+resource "aws_cloudwatch_metric_alarm" "alarm_to_lambda" {
   alarm_name = "my-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = 1
