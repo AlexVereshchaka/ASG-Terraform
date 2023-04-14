@@ -33,3 +33,18 @@ resource "aws_autoscaling_policy" "asg_policy" {
   }
   autoscaling_group_name= aws_autoscaling_group.asg.name
 }
+
+
+# Создание CloudWatch Alarm... Нужно заменить ресурс другим!!!!!! (Не поддерживается новыми версиями)
+resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
+  alarm_name          = "cpu-utilization-alarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = "80"
+  alarm_description   = "Alarm when CPU utilization exceeds 80%"
+  /* alarm_actions       = [aws_lambda_function.ar] */
+}
