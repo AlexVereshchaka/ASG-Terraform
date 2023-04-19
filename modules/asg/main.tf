@@ -16,8 +16,8 @@ terraform {
 
 resource "aws_autoscaling_group" "asg" {
   name                 = var.asg_name
-  launch_configuration = local.launch_template_arn
-  vpc_zone_identifier  = [var.vpc_zone_identifier]
+  launch_configuration = aws_launch_template.example.arn
+  vpc_zone_identifier  = [var.subnet_ids]
   min_size             = var.min_size
   max_size             = var.max_size
   desired_capacity     = var.desired_capacity
@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "asg" {
 }
 
 resource "aws_lb_target_group_attachment" "asg_attachment" {
-  target_group_arn = var.aws_lb_target_group
+  target_group_arn = var.target_group_arn
   target_id        = var.target_group_arn
   port             = 80
 }
@@ -57,7 +57,7 @@ resource "aws_launch_template" "example" {
   name_prefix   = "example"
   instance_type = var.instance_type
 
-  image_id = element(var.ami_ids, count.index)
+  image_id = var.ami_ids
 
   network_interfaces {
     associate_public_ip_address = true
@@ -75,7 +75,6 @@ resource "aws_launch_template" "example" {
     }
   } */
 
-  count = length(var.ami_ids)
 }
 
 

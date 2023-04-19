@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
   bucket         = "asg-backend-194"
     key            = "modules/ec2/terraform.tfstate"
-    region         = "eu-north-1"
+    region         = "us-west-1"
     encrypt        = true
   }
   required_providers {

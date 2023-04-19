@@ -21,3 +21,7 @@ output "aws_nlb" {
 output "subnet_ids" {
   value = aws_subnet.private.id
 }
+
+output "target_group_id" {
+  value = aws_lb_target_group.main.id
+}

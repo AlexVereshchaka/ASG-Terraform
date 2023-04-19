@@ -28,17 +28,20 @@ variable "desired_capacity" {
   description = "Desired capacity of the Auto Scaling Group"
 }
 
-variable "vpc_zone_identifier" {
+/* variable "vpc_zone_identifier" {
   
-}
+} */
 
 variable "subnet_ids" {
   
 }
-
-variable "aws_lb_target_group" {
+variable "target_group_id" {
   
 }
+
+/* variable "aws_lb_target_group" {
+  
+} */
 # Launch template module
 
 variable "instance_type" {
@@ -49,8 +52,9 @@ variable "instance_type" {
 
 
 
+
 variable "ami_ids" {
-  type = list(string)
+
 }
 
 variable "security_group" {

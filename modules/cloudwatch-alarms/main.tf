@@ -7,7 +7,7 @@ terraform {
   backend "s3" {
   bucket         = "asg-backend-194"
     key            = "modules/cloud-watch/terraform.tfstate"
-    region         = "eu-north-1"
+    region         = "us-west-1"
     encrypt        = true
   }
   required_providers {

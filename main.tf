@@ -5,10 +5,10 @@ provider "aws" {
 module "ec2" {
   source              = "./modules/ec2"
   instance_name       = "Name"
-  ami_id              = "ami-0c55b159cbfafe1f0"
+  ami_id              = "ami-0e3191d0f8c6cfe4e"
   instance_type       = "t2.micro"
   key_name            = "my-key"
-  subnet_id           = "subnet-abc123"
+  subnet_id           = module.network.subnet_ids
   security_group_name = "my-security-group"
 
   tags = {
@@ -26,7 +26,7 @@ module "network" {
 
   #VPC
   vpc_cidr_block    = "10.0.0.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-1a"
   subnet_cidr_block = "10.0.1.0/24"
 
   #Target Group
@@ -87,12 +87,13 @@ module "autoscaling" {
   max_size         = 2
   desired_capacity = 1
   instance_type = "t3.micro"
-  ami_ids = ["ami-0453f67283fbdec39", "ami-0a830948c354b21a5", "ami-00f136ac48acf2618"]
-  aws_lb_target_group = module.network.target_group_arn
+  ami_ids = "ami-0e3191d0f8c6cfe4e"
+  /* aws_lb_target_group = module.network.target_group_arn */
   subnet_ids = module.network.subnet_ids
   target_group_arn = module.network.target_group_arn
-  vpc_zone_identifier = module.network.subnet_ids
+  /* vpc_zone_identifier = module.network.subnet_ids */
   security_group = module.network.aws_security_group
+  target_group_id = module.network.target_group_id
 }
 
 

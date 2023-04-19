@@ -1,10 +1,10 @@
 terraform {
-  /* backend "s3" {
-    bucket         = "asg-backend-194"
+  backend "s3" {
+    bucket         = "asg-backend-195"
     key            = "backend/terraform.tfstate"
-    region         = "eu-north-1"
+    region         = "us-west-1"
     encrypt        = true
-  } */
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"

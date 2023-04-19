@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
   bucket         = "asg-backend-194"
     key            = "modules/lambda/terraform.tfstate"
-    region         = "eu-north-1"
+    region         = "us-west-1"
     encrypt        = true
   }
   required_providers {
@@ -65,8 +65,8 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_policy_attachment" {
 
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "./modules/lambda/lambda-lunction"
-  output_path = "./modules/lambda/lambda-lunction/lambda_function.zip"
+  source_dir  = "./modules/lambda/lambda-function"
+  output_path = "./modules/lambda/lambda-function-archive/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "server_redirect_lambda" {
