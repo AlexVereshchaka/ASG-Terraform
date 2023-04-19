@@ -1,3 +1,19 @@
+terraform {
+  backend "s3" {
+  bucket         = "asg-backend-194"
+    key            = "modules/ec2/terraform.tfstate"
+    region         = "eu-north-1"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.56.0"
+    }
+  }
+  required_version = ">= 1.0.2"
+}
+
 resource "aws_autoscaling_group" "asg" {
   name                 = var.asg_name
   launch_configuration = local.launch_template_arn

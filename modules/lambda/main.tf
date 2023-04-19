@@ -1,3 +1,19 @@
+terraform {
+  backend "s3" {
+  bucket         = "asg-backend-194"
+    key            = "modules/lambda/terraform.tfstate"
+    region         = "eu-north-1"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.56.0"
+    }
+  }
+  required_version = ">= 1.0.2"
+}
+
 resource "aws_iam_role" "lambda_execution_role" {
   name = "lambda_execution_role"
 

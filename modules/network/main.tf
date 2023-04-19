@@ -1,3 +1,19 @@
+terraform {
+  backend "s3" {
+  bucket         = "asg-backend-194"
+    key            = "modules/network/terraform.tfstate"
+    region         = "eu-north-1"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.56.0"
+    }
+  }
+  required_version = ">= 1.0.2"
+}
+
 resource "aws_vpc" "main" {
   cidr_block = var.subnet_cidr_block
   /* tags = {

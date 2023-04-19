@@ -3,6 +3,21 @@
 и второй для случая, когда загрузка процессора на сервере падает ниже 50%.
 Оба аларма вызывают Lambda функцию var.lambda_function_arn, 
 которая будет перенаправлять трафик на другой сервер, если это необходимо. */
+terraform {
+  backend "s3" {
+  bucket         = "asg-backend-194"
+    key            = "modules/cloud-watch/terraform.tfstate"
+    region         = "eu-north-1"
+    encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.56.0"
+    }
+  }
+  required_version = ">= 1.0.2"
+}
 
 resource "aws_cloudwatch_metric_alarm" "cpu_usage_high" {
   alarm_name          = var.alarm_name_high
